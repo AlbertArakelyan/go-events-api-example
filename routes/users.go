@@ -2,6 +2,7 @@ package routes
 
 import (
 	"events-api/models"
+	"events-api/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -43,5 +44,16 @@ func login(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusOK, gin.H{"message": "User authenticated successfully!"})
+	token, err := utils.GenerateToken(user.Email, user.ID)
+
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"message": "Could not authenticate user."})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{
+		"message": "User authenticated successfully!",
+		"token":   token,
+		"user":    gin.H{"email": user.Email, "id": user.ID},
+	})
 }
