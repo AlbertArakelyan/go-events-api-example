@@ -38,12 +38,13 @@ func (e Event) Save() error {
 
 func GetAllEvents() ([]Event, error) {
 	query := `SELECT * FROM events`
+	// query += " LIMIT 10 OFFSET 0" // For making maginated (almost same as mongoose a util can be thought for this)
 	rows, err := db.DB.Query(query)
 
 	if err != nil {
 		return nil, err
 	}
-	
+
 	defer rows.Close()
 
 	var events []Event
