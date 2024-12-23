@@ -24,6 +24,8 @@ func registerForEvent(context *gin.Context) {
 		return
 	}
 
+	// TODO before registering, check if user is already registered
+
 	err = event.Register(userId)
 
 	if err != nil {
