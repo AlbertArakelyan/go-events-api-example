@@ -8,7 +8,7 @@
 </div>
 
 <p align="center">
-  Simple REST API Go project with JWT authentication.
+  Simple REST API Go project with JWT authentication and SQLite.
 </p>
 
 ## ▶️ Running and Installing
