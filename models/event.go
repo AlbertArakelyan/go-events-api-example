@@ -141,7 +141,7 @@ func (e Event) CancelRegistration(userId int64) error {
 
 func GetAllRegistrations() ([]Event, error) {
 	query := "SELECT events.* FROM events INNER JOIN registrations ON events.id = registrations.event_id"
-	// query := "SELECT events.*, registrations.*, users.* FROM events INNER JOIN registrations ON events.id = registrations.event_id INNER JOIN users ON registrations.user_id = users.id"
+	// query := "SELECT events.*, registrations.*, users.* FROM events INNER JOIN registrations ON events.id = registrations.event_id INNER JOIN users ON registrations.user_id = users.id" // retrieving data from multiple tables (users, events, registrations)
 	rows, err := db.DB.Query(query)
 
 	if err != nil {
